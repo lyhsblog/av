@@ -95,6 +95,9 @@ export default {
     overflow-x scroll
     .link-logo
       display none
+    .link-list
+      .list-item:first-child
+        padding-left 0 !important
 .cover-header
   height $coverHeight
 @media print

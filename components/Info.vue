@@ -52,7 +52,8 @@ export default {
   background-attachment fixed
 
 .no-bg
-  padding-top ($headerHeight + 2.5rem)
+  // padding-top ($headerHeight + 2.5rem)
+  padding-top ($headerHeight)
   min-height "calc(100vh - 8.95rem - %s)" % $headerHeight
 
 @media print

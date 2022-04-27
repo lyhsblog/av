@@ -8,6 +8,5 @@ module.exports = {
     ['@vuepress/last-updated', { transformer: timestamp => timestamp }],
     'blog-multidir',
     'img-lazy',
-    ['reading-progress', { readingDir: /[^/]+$/ }]
   ]
 }

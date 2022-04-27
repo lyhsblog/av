@@ -1,16 +1,16 @@
 <template>
-  <article class="main info-content">
+  <div class="main">
     <div class="content-header">
       <h1 class="header-title">{{ $page.title }}</h1>
     </div>
-    <div v-if="categories.length || tags.length" class="flex-wcc content-tag">
+    <div v-if="categories.length || tags.length" class="content-tag">
       <div v-if="categories.length" class="inblock tag-list">
         <router-link
           v-for="(item, index) in categories"
           :key="index"
           :to="$pluginConfig.categoryIndexPageUrl + item + '/'"
           class="tag-text"
-          >{{ item }}
+        >{{ item }}
         </router-link>
       </div>
       <span v-if="categories.length && tags.length" class="tag-space">/</span>
@@ -20,31 +20,34 @@
           :key="index"
           :to="$pluginConfig.tagIndexPageUrl + item + '/'"
           class="tag-text"
-          >{{ item }}
+        >{{ item }}
         </router-link>
       </div>
     </div>
-    <Content class="content" />
-    <div v-if="postTime" class="content-time">
-      <time
-        v-if="postTime.createTime && createTime"
-        :datetime="createTime"
-        class="time-text"
-        >{{ postTime.createTime + ': ' + createTime }}
-      </time>
-      <time
-        v-if="postTime.lastUpdated && lastUpdated"
-        :datetime="lastUpdated"
-        class="time-text"
-        >{{ postTime.lastUpdated + ': ' + lastUpdated }}
-      </time>
+    <div class="player">
+      <div class="info-content">
+        <video
+          style="aspect-ratio: 16 / 9; width: 100%"
+          controls
+          playsinline
+          data-poster="poster.jpg"
+        >
+          <source
+            :src="$frontmatter.src"
+            type="video/mp4"
+          />
+        </video>
+        <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+      </div>
+      <div class="info-right">
+        <script type="application/javascript" data-idzone="4475804" src="https://a.realsrv.com/nativeads-v2.js" />
+      </div>
     </div>
-  </article>
+  </div>
 </template>
 
 <script>
 import { getCategories, getTags } from '@theme/lib/util'
-
 export default {
   name: 'InfoContent',
   computed: {
@@ -75,57 +78,85 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.info-content
-  border-radius 1rem
-  box-shadow 0px 0px 8px $shadowColor
-  background $whiteColor
-  transition all .5s ease-in-out
-  @media (prefers-color-scheme: dark)
-    box-shadow 0px 0px 8px $shadowDarkColor
-    background $whiteDarkColor
-  @media print
-    box-shadow none
-  .content-header
-    padding 3rem 0 1rem
-    text-align center
-    .header-title
-      font-size 2.1rem
+.main
+  padding 0
+.content-header
+  margin 0 auto
+  width 100%
+  max-width 84.75rem
+  padding 0
+  text-align left
+  .header-title
+    font-size 2.1rem
+    color $blackColor
+    font-weight bold
+    text-shadow 0 1px 5px $shadowColor
+    transition all .5s ease-in-out
+    @media (prefers-color-scheme: dark)
+      color $blackDarkColor
+      text-shadow 0 1px 5px $shadowDarkColor
+    @media print
       color $blackColor
-      font-weight bold
-      text-shadow 0 1px 5px $shadowColor
+      text-shadow none
+.content-tag
+  display flex
+  flex-flow row wrap
+  align-items center
+  .tag-list
+    padding .5rem 0
+    .tag-text
+      display inline-block
+      padding .2rem .5rem
+      font-size 1.2rem
+      color $accentColor
       transition all .5s ease-in-out
       @media (prefers-color-scheme: dark)
-        color $blackDarkColor
-        text-shadow 0 1px 5px $shadowDarkColor
+        color $accentDarkColor
+  .tag-space
+    color $blackColor
+    transition color .5s ease-in-out
+    @media (prefers-color-scheme: dark)
+      color $blackDarkColor
+.player
+  display flex
+  flex-wrap wrap
+  .info-content
+    box-sizing border-box
+    padding-right 10px
+    @media (max-width $phoneWidth)
+      padding-right 0
+      margin-bottom 10px
+    flex 1 1 auto
+    width 50vw
+    @media (max-width $phoneWidth)
+      width 100vw
+    border-radius 1rem
+    box-shadow 0px 0px 8px $shadowColor
+    background $whiteColor
+    transition all .5s ease-in-out
+    @media (prefers-color-scheme: dark)
+      box-shadow 0px 0px 8px $shadowDarkColor
+      background $whiteDarkColor
+    @media print
+      box-shadow none
+    .content-time
+      padding 0 3rem 2rem
+      text-align right
       @media print
-        color $blackColor
-        text-shadow none
-  .content-tag
-    .tag-list
-      padding .5rem 0
-      .tag-text
-        display inline-block
-        padding .2rem .5rem
-        font-size 1.2rem
-        color $accentColor
+        display none
+      .time-text
+        display block
+        font-size .9rem
+        color $textColor
         transition all .5s ease-in-out
         @media (prefers-color-scheme: dark)
-          color $accentDarkColor
-    .tag-space
-      color $blackColor
-      transition color .5s ease-in-out
-      @media (prefers-color-scheme: dark)
-        color $blackDarkColor
-  .content-time
-    padding 0 3rem 2rem
-    text-align right
-    @media print
-      display none
-    .time-text
-      display block
-      font-size .9rem
-      color $textColor
-      transition all .5s ease-in-out
-      @media (prefers-color-scheme: dark)
-        color $textDarkColor
+          color $textDarkColor
+  .info-right
+    flex 1 1 auto
+    width 15vw
+    height 30vw
+    overflow scroll
+    @media (max-width $phoneWidth)
+      flex 1 1 auto
+      width 100vw
 </style>
