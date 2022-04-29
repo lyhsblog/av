@@ -7,7 +7,7 @@ module.exports = {
   themeConfig: {
     // defaultTheme: { dark: [19, 6] },
     // defaultTheme: { light: [6, 18], dark: [18, 6] },
-    // useVssue: true,
+    useVssue: true,
     showThemeButton: false,
     cover: '/cover.jpg',
     logo: '/logo.png',
@@ -59,10 +59,10 @@ module.exports = {
       // 设置 `platform` 而不是 `api`
       platform: 'github',
       // 其他的 Vssue 配置
-      owner: '',
-      repo: 'NAME_OF_REPO',
-      clientId: 'YOUR_CLIENT_ID',
-      clientSecret: 'YOUR_CLIENT_SECRET'
+      owner: 'ybzc-gg',
+      repo: 'av',
+      clientId: 'cd3661b4a47d8b3c98cc',
+      clientSecret: 'eca1148350ed1e5f458dd4a7f2fee5219a65bf88'
     }],
   ],
 }

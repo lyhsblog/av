@@ -87,7 +87,8 @@ export default {
   padding 0
   text-align left
   .header-title
-    font-size 2.1rem
+    word-wrap: break-word;
+    font-size 1.6rem
     color $blackColor
     font-weight bold
     text-shadow 0 1px 5px $shadowColor
@@ -103,7 +104,9 @@ export default {
   flex-flow row wrap
   align-items center
   .tag-list
-    padding .5rem 0
+    :first-child
+      background #3e3b3b
+    padding 0 0 .5rem
     .tag-text
       display inline-block
       padding .2rem .5rem

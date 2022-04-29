@@ -10,8 +10,4 @@ tags:
   - test
 categories:
   - futurama
---- 
-
-# manga 226 info
-
-sdlfjdlfjlk
+---
